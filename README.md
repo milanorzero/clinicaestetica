@@ -55,6 +55,31 @@ PHP: 8.2
 
 Servidor Web: Apache 2.4
 
+
+Instalacion en el servidor
+// instalacion dependencias
+sudo apt-get update && sudo apt-get upgrade -y
+
+sudo apt-get install -y apache2 php8.4 php8.4-cli php8.4-fpm php8.4-mysql php8.4-xml php8.4-mbstring php8.4-curl php8.4-zip curl git unzip
+// instalar composer
+curl -sS https://getcomposer.org/installer | php sudo mv composer.phar /usr/local/bin/composer
+//clonar repositorio	
+git clone https://github.com/milanorzero/clinicaestetica.git 
+
+cd clinicaestetica
+
+cp .env.example.docker .env
+
+composer install
+
+php artisan key:generate
+
+php artisan migrate
+
+php artisan serve
+
+ir a http://localhost:8000/
+
 Construido con
 Laravel - Framework PHP para aplicaciones web.
 
