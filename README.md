@@ -15,15 +15,25 @@ Instrucciones para obtener una copia del proyecto en funcionamiento en una máqu
 Pasos detallados para instalar el proyecto.
 
 git clone https://github.com/milanorzero/clinicaestetica.git
+
 cd clinicaestetica
+
 cp .env.example.docker .env
+
 docker run -v $(pwd):/app composer install
+
 cd ./docker
+
 docker-compose up -d
+
 docker-compose exec php php artisan key:generate
+
 docker-compose exec php php artisan migrate
+
 docker-compose exec php php artisan db:seed
+
 docker-compose exec php php artisan serve --host=0.0.0.0 --port=8000
+
 Entorno de Desarrollo y Pruebas
 Este proyecto fue diseñado en un entorno específico, por lo que se recomienda utilizar las mismas versiones de software.
 
