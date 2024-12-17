@@ -8,23 +8,34 @@ Instrucciones para obtener una copia del proyecto en funcionamiento en una máqu
 
  Prerrequisitos
 
-- **Docker**: Asegúrate de tener Docker instalado en tu máquina. Puedes seguir las instrucciones en https://docs.docker.com/get-docker/
+- **Docker**: Asegúrate de tener Docker instalado en tu máquina.
 
  Instalación
 
 Pasos detallados para instalar el proyecto.
+// clonar repositorio
 
 git clone https://github.com/milanorzero/clinicaestetica.git
+// entrar al directorio
 
 cd clinicaestetica
+// copiar variables de entorno
 
 cp .env.example.docker .env
 
-docker run -v $(pwd):/app composer install
+//instalar dependencias usando composer
+
+docker run --rm -v $(pwd):/app composer install
+
+// abrir directorio docker
 
 cd ./docker
 
+//levantar contenedor
+
 docker-compose up -d
+
+// llave de aplicacion y migraciones
 
 docker-compose exec php php artisan key:generate
 
@@ -32,8 +43,8 @@ docker-compose exec php php artisan migrate
 
 docker-compose exec php php artisan db:seed
 
-docker-compose exec php php artisan serve --host=0.0.0.0 --port=8000
-
+para acceder a la aplicacion: http://localhost:8000
+panel de administrador: http://localhost:8000/login
 Entorno de Desarrollo y Pruebas
 Este proyecto fue diseñado en un entorno específico, por lo que se recomienda utilizar las mismas versiones de software.
 
@@ -43,45 +54,6 @@ Sistema Operativo: Ubuntu 22.04
 PHP: 8.2
 
 Servidor Web: Apache 2.4
-
-Entorno de Pruebas
-Instrucciones específicas para el entorno de pruebas.
-
-Configuración del Entorno
-Pasos detallados para replicar el entorno de desarrollo y pruebas.
-
-Configura las variables de entorno en el archivo .env según tus necesidades.
-
-Instala las dependencias necesarias.
-
-Ejecuta las migraciones y seeders.
-
-Instalación Servidor
-Instrucciones para instalar el proyecto en un servidor.
-
-Sube el contenido del proyecto al servidor.
-
-Configura el entorno de producción en el archivo .env.
-
-Ejecuta las migraciones en el servidor de producción.
-
-Configura el servidor web (Apache/Nginx).
-
-
-
-Cliente
-
-
-Ejecutando las Pruebas
-Instrucciones para ejecutar pruebas y verificar el correcto funcionamiento del proyecto.
-
-Ejecuta las pruebas unitarias:
-sh
-php artisan test
-Revisa los resultados y soluciona cualquier error.
-entrar a http://127.0.0.1:8000/
-PARA ENTRAR AL PANEL DE ADMINISTRADOR:
-http://127.0.0.1:8000/login
 
 Construido con
 Laravel - Framework PHP para aplicaciones web.
